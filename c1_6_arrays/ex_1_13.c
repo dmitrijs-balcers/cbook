@@ -39,7 +39,7 @@ main()
             wlength = 0;
         }
 
-    printf("\nWord histogram:\n");
+    printf("\nWord horizontal histogram:\n");
     printf("------------------\n");
 
     int largest = 0;
@@ -48,7 +48,7 @@ main()
         if (largest < nwords[i]) largest = nwords[i];
 
     for (i = 0; i < 11; ++i) {
-        (i<10) ? printf("%d\t", i + 1) : printf(">10\t");
+        (i<10) ? printf("%3d ", i + 1) : printf(">10\t");
 
         // we will have 10 chars to represent the element 
         int relative_to_largest = (nwords[i] / (float)largest) * 10;
@@ -61,5 +61,19 @@ main()
     }
 
     printf("------------------\n");
+
+    printf("\nWord vertical histogram:\n");
+    printf("-----------\n");
+
+    for (i = 10; i > 0; --i) {
+        int j;
+        for (j = 0; j < 11; ++j) {
+            int relative_to_largest = (nwords[j] / (float)largest) * 10;
+            printf((relative_to_largest >= i) ? "x" : " ");
+        }
+        printf("\n");
+    }
+
+    printf("-----------\n");
 }
         
